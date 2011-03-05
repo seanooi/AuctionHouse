@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/CS300</property>
+		<property name="connection.username">CS300</property>
+		<property name="connection.password">CS300</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Enable c3p0 connection pooling, because hibernate pooling is not prod-ready. 
+			Apparently connection.provider_class is needed in hibernate 3+ -->
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="c3p0.max_size">100</property>
+		<property name="c3p0.min_size">1</property>
+		<property name="c3p0.idle_test_period">30</property>
+		<!-- Echo all executed SQL to stdout for debugging -->
+		<property name="show_sql">true</property>
+		<!-- All the entity classes for hibernate to check for annotations here -->
+		<mapping class="org.cs300.auctionhouse.domain.Auction" />
+		<mapping class="org.cs300.auctionhouse.domain.Authority" />
+		<mapping class="org.cs300.auctionhouse.domain.Bid" />
+		<mapping class="org.cs300.auctionhouse.domain.Category" />
+		<mapping class="org.cs300.auctionhouse.domain.Feedback" />
+		<mapping class="org.cs300.auctionhouse.domain.PersonalInfo" />
+		<mapping class="org.cs300.auctionhouse.domain.User" />
+	</session-factory>
+</hibernate-configuration>

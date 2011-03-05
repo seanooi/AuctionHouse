@@ -1,0 +1,50 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<!-- <http>
+		<intercept-url pattern="/login.jsp*" filters="none" />
+		<intercept-url pattern="/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/control/**" access = "ROLE_USER" />
+		<form-login login-page="/login.jsp"
+			authentication-failure-url="/login.jsp?error=failed"
+			login-processing-url="/login.jsp" />
+		<logout logout-url="/logoff.jsp" logout-success-url="/" />
+	</http> -->
+	
+	<http auto-config="true">
+		<intercept-url pattern="/*" access="ROLE_USER" />
+		<remember-me/>
+	</http>
+
+	<beans:bean id="userDetailsService" class="org.cs300.auctionhouse.security.UserDetailsServiceImpl" >
+		<beans:property name="userAssembler" ref="userAssembler" />
+		<beans:property name="services" ref="services" />
+	</beans:bean>
+
+	<beans:bean id="userAssembler" class="org.cs300.auctionhouse.security.UserAssembler" />
+
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="userDetailsService" />
+	</beans:bean>
+
+	<beans:bean id="authenticationManager"
+		class="org.springframework.security.authentication.ProviderManager">
+		<beans:property name="providers">
+			<beans:list>
+				<beans:ref local="daoAuthenticationProvider" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<!-- <password-encoder hash="md5" /> -->
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

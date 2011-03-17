@@ -13,7 +13,7 @@
 		<th>Category</th>
 		<th>Title</th>
 		<th>Description</th>
-		<th>Picture</th>
+		<th>Image</th>
 	</tr>
 <c:forEach items="${auctions}" var = "auction">
 	<tr>
@@ -22,7 +22,7 @@
 		<td>${auction.category.name}</td>
 		<td>${auction.title}</td>
 		<td>${auction.description}</td>
-		<td>${auction.picture}</td>
+		<td><img src="<c:url value="/image?id=${auction.idAuction}" />" /></td>
 	</tr>
 </c:forEach>
 </table>

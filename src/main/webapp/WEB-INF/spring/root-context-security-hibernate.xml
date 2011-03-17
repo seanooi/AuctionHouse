@@ -17,6 +17,7 @@
 	
 	<http auto-config="true">
 		<intercept-url pattern="/*" access="ROLE_USER" />
+		<intercept-url pattern="/user/add/*" access="ROLE_GUEST"/>
 		<remember-me/>
 	</http>
 

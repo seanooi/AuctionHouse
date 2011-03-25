@@ -5,21 +5,21 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-	<!-- <http>
+	 <http auto-config="true">
 		<intercept-url pattern="/login.jsp*" filters="none" />
-		<intercept-url pattern="/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/*" access="ROLE_USER" />
 		<intercept-url pattern="/control/**" access = "ROLE_USER" />
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=failed"
-			login-processing-url="/login.jsp" />
-		<logout logout-url="/logoff.jsp" logout-success-url="/" />
-	</http> -->
+			default-target-url="/"/>
+	</http> 
 	
-	<http auto-config="true">
+	<!--  <http auto-config="true">
+		<form-login login-page="/login.jsp" />
 		<intercept-url pattern="/*" access="ROLE_USER" />
 		<intercept-url pattern="/user/add/*" access="ROLE_GUEST"/>
 		<remember-me/>
-	</http>
+	</http> -->
 
 	<beans:bean id="userDetailsService" class="org.cs300.auctionhouse.security.UserDetailsServiceImpl" >
 		<beans:property name="userAssembler" ref="userAssembler" />

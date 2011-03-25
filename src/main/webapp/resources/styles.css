@@ -1,1 +1,114 @@
-@CHARSET "UTF-8";
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	font:11px "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+	background: #f9f9f9;
+}
+
+.clear
+{
+	clear: both;
+}
+
+label#username, label#password
+{
+	color:#777;
+	font-size:13px;
+}
+
+#login-form-container
+{	
+	margin: 100px auto 0;
+	width: 325px;
+}
+
+#login-form
+{
+	border: 1px solid #000;
+	-moz-border-radius:11px;
+	-khtml-border-radius:11px;
+	-webkit-border-radius:11px;
+	border-radius:11px;
+	background:#fff;
+	border:1px solid #e5e5e5;
+	-moz-box-shadow:rgba(200,200,200,1) 0 4px 18px;
+	-webkit-box-shadow:rgba(200,200,200,1) 0 4px 18px;
+	-khtml-box-shadow:rgba(200,200,200,1) 0 4px 18px;
+	box-shadow:rgba(200,200,200,1) 0 4px 18px;
+	padding:16px 16px 20px;
+	margin: 2em 0;
+}
+
+#login-form input[type~=text], #login-form input[type~=password]
+{
+	color: #555;
+}
+
+#remember-me
+{
+	font-weight:400;
+	float:left;
+	margin-bottom:0;
+}
+
+#remember-me[type~=checkbox]
+{
+	width: 1em;
+	margin-right: 0 !important;
+}
+
+#remember-me-label
+{
+	color:#777;
+	font-size:11px;
+	line-height:19px;
+}
+
+#login-form input
+{	
+	font-size:24px;
+	width:97%;
+	margin-top:2px;
+	margin-right:6px;
+	margin-bottom:16px;
+	border:1px solid #e5e5e5;
+	background:#fbfbfb;
+	padding:3px;
+}
+
+input#submit
+{
+	font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+	font-size:12px !important;
+	font-weight: 800 !important;
+	-moz-border-radius:11px;
+	-khtml-border-radius:11px;
+	-webkit-border-radius:11px;
+	border-radius:11px;
+	cursor:pointer;
+	text-decoration:none;
+	margin-top:-3px;
+	padding:3px 10px;
+	width: 65px !important;
+	float: right;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#298cba), to(#217096));
+	background-image: -moz-linear-gradient(-90deg,#298cba,#217096);
+	color: #fff;
+	border: 1px solid #298cba;
+}
+
+input#submit:hover
+{
+	border: 1px solid #13455b;
+}
+
+input#submit:active
+{
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#217096), to(#298cba));
+	background-image: -moz-linear-gradient(-90deg,#217096,#298cba);
+}

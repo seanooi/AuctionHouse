@@ -25,29 +25,14 @@ public class Services {
 	public Session sess() {
 		return sessionFactory.getCurrentSession();
 	}
-	
-	public void createUser(String username, String password, String firstName,
-			String middleName, String lastName, String address1, String address2,
-			String city, String state, String zipcode, String country,
-			String emailAddress, String phoneNumber) {
-		User u = new User();
-		PersonalInfo pi = new PersonalInfo();
-		u.setUsername(username);
-		u.setPassword(password);
-		pi.setUser(u);
-		pi.setFirstName(firstName);
-		pi.setMiddleName(middleName);
-		pi.setLastName(lastName);
-		pi.setAddress1(address1);
-		pi.setAddress2(address2);
-		pi.setCity(city);
-		pi.setState(state);
-		pi.setZipcode(zipcode);
-		pi.setCountry(country);
-		pi.setEmailAddress(emailAddress);
-		pi.setPhoneNumber(phoneNumber);
-		sess().save(u);
+
+	public void createUser(User user, PersonalInfo pi) {
+		user.setEnabled(true);
+		Authority auth = new Authority(user, "ROLE_USER");
+		pi.setUser(user);
+		sess().save(user);
 		sess().save(pi);
+		sess().save(auth);
 	}
 
 	@SuppressWarnings("unchecked")

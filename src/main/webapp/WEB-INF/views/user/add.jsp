@@ -5,81 +5,97 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="../resources/styles.css" type="text/css" />
 <title>Add New User...</title>
 </head>
 <body>
+<div id="register-form-container">
+<h3>Image Here</h3>
 <form:form method="post" modelAttribute="upi">
 <form:errors path="*" cssClass="error" />
-<table>
-	<tr>
-		<td>Username</td>
-		<td><form:input path="User.username" /></td>
-		<td><form:errors path="User.username" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Password</td>
-		<td><form:input path="User.password" /></td>
-		<td><form:errors path="User.password" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>First Name</td>
-		<td><form:input path="PersonalInfo.firstName" /></td>
-		<td><form:errors path="PersonalInfo.firstName" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Middle Name</td>
-		<td><form:input path="PersonalInfo.middleName" /></td>
-		<td><form:errors path="PersonalInfo.middleName" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Last Name</td>
-		<td><form:input path="PersonalInfo.lastName" /></td>
-		<td><form:errors path="PersonalInfo.lastName" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Address Line 1</td>
-		<td><form:input path="PersonalInfo.address1" /></td>
-		<td><form:errors path="PersonalInfo.address1" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Address Line 2</td>
-		<td><form:input path="PersonalInfo.address2" /></td>
-		<td><form:errors path="PersonalInfo.address2" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>City</td>
-		<td><form:input path="PersonalInfo.city" /></td>
-		<td><form:errors path="PersonalInfo.city" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>State</td>
-		<td><form:input path="PersonalInfo.state" /></td>
-		<td><form:errors path="PersonalInfo.state" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Country</td>
-		<td><form:input path="PersonalInfo.country" /></td>
-		<td><form:errors path="PersonalInfo.country" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Zipcode</td>
-		<td><form:input path="PersonalInfo.zipcode" /></td>
-		<td><form:errors path="PersonalInfo.zipcode" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Phone Number</td>
-		<td><form:input path="PersonalInfo.phoneNumber" /></td>
-		<td><form:errors path="PersonalInfo.phoneNumber" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td>Email Address</td>
-		<td><form:input path="PersonalInfo.emailAddress" /></td>
-		<td><form:errors path="PersonalInfo.emailAddress" cssClass="error" /></td>
-	</tr>
-	<tr>
-		<td colspan="3"><input type="submit" /></td>
-	</tr>
-</table>
+<p>
+		<label id="username">Username<br />
+		<form:input path="User.username" />
+		<form:errors path="User.username" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="password">Password<br />
+		<form:input path="User.password" />
+		<form:errors path="User.password" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="firstName">First Name<br />
+		<form:input path="PersonalInfo.firstName" />
+		<form:errors path="PersonalInfo.firstName" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="middleName">Middle Name<br />
+		<form:input path="PersonalInfo.middleName" />
+		<form:errors path="PersonalInfo.middleName" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="lastName">Last Name<br />
+		<form:input path="PersonalInfo.lastName" />
+		<form:errors path="PersonalInfo.lastName" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="address1">Address Line 1<br />
+		<form:input path="PersonalInfo.address1" />
+		<form:errors path="PersonalInfo.address1" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="address2">Address Line 2<br />
+		<form:input path="PersonalInfo.address2" />
+		<form:errors path="PersonalInfo.address2" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="city">City<br />
+		<form:input path="PersonalInfo.city" />
+		<form:errors path="PersonalInfo.city" cssClass="error" />
+		</label>
+</p>
+<p>		
+		<label id="state">State<br />
+		<form:input path="PersonalInfo.state" />
+		<form:errors path="PersonalInfo.state" cssClass="error" />
+		</label>
+</p>
+<p>		
+		<label id="country">Country<br />
+		<form:input path="PersonalInfo.country" />
+		<form:errors path="PersonalInfo.country" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="zipcode">Zipcode<br />
+		<form:input path="PersonalInfo.zipcode" />
+		<form:errors path="PersonalInfo.zipcode" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="phoneNumber">Phone Number<br />
+		<form:input path="PersonalInfo.phoneNumber" />
+		<form:errors path="PersonalInfo.phoneNumber" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="email">Email Address<br />
+		<form:input path="PersonalInfo.emailAddress" />
+		<form:errors path="PersonalInfo.emailAddress" cssClass="error" />
+		</label>
+</p>
+
+		<input id="submit" type="submit" name="submit" value="Register" />
 </form:form>
+<div class="clear"></div>
+<a href="/AuctionHouse/login.jsp">Log In</a>
+</div>
 </body>
 </html>

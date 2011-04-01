@@ -35,6 +35,10 @@ public class Services {
 		sess().save(auth);
 	}
 
+	public void updateUser(User user) {
+		sess().update(user);
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Auction> getAllAuctions() {
 		return sess().createQuery("from Auction").list();

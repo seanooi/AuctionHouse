@@ -24,7 +24,6 @@ public class UserController {
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET)
 	public String addUserForm(Model model) {
-		logger.info("adduser?");
 		UserPersonalInfo upi = new UserPersonalInfo();
 		model.addAttribute("upi", upi);
 		return "user/add";
@@ -33,14 +32,24 @@ public class UserController {
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public String addUserSubmit(@ModelAttribute("upi") UserPersonalInfo upi,
 			BindingResult result, SessionStatus status) {
-		logger.info("user added!");
 		services.createUser(upi.getUser(), upi.getPersonalInfo());
 		return "redirect:success";
 	}
-	
+
+	@RequestMapping(value="/user/update", method=RequestMethod.GET)
+	public String updateUserForm(Model model) {
+		logger.info("/user/update get request");
+		return "user/add";
+	}
+
+	@RequestMapping(value="/user/update", method=RequestMethod.POST)
+	public String updateUserSubmit() {
+		logger.info("/user/update post request");
+		return "redirect:success";
+	}
+
 	@RequestMapping(value="/user/success", method = RequestMethod.GET)
 	public String addUserSuccess() {
-		logger.info("user success");
 		return "user/success";
 	}
 }

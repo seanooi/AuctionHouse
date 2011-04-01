@@ -35,9 +35,18 @@ public class Services {
 		sess().save(auth);
 	}
 
+	public void updateUser(User user) {
+		sess().update(user);
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Auction> getAllAuctions() {
 		return sess().createQuery("from Auction").list();
+	}
+
+	public Auction getAuctionByID(int id) {
+		return (Auction)
+			sess().createQuery("from Auction where idAuction=:idAuction").setInteger("idAuction", id).uniqueResult();
 	}
 
 	public User findByName(String username) {
@@ -45,8 +54,6 @@ public class Services {
 	}
 	
 	public byte[] getAuctionImage(int id) {
-		Auction auction = (Auction) 
-			sess().createQuery("from Auction where idAuction=:idAuction").setInteger("idAuction", id).uniqueResult();
-		return auction.getPicture();
+		return getAuctionByID(id).getPicture();
 	}
 }

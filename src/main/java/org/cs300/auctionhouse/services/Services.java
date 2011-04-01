@@ -44,13 +44,16 @@ public class Services {
 		return sess().createQuery("from Auction").list();
 	}
 
+	public Auction getAuctionByID(int id) {
+		return (Auction)
+			sess().createQuery("from Auction where idAuction=:idAuction").setInteger("idAuction", id).uniqueResult();
+	}
+
 	public User findByName(String username) {
 		return (User) sess().createQuery("from User where username=:username").setString("username", username).uniqueResult();
 	}
 	
 	public byte[] getAuctionImage(int id) {
-		Auction auction = (Auction) 
-			sess().createQuery("from Auction where idAuction=:idAuction").setInteger("idAuction", id).uniqueResult();
-		return auction.getPicture();
+		return getAuctionByID(id).getPicture();
 	}
 }

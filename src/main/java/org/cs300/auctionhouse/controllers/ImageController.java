@@ -6,18 +6,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class ImageController {
+public class ImageController
+{
+    /**
+     * Provides access to the picture factory business functionality
+     */
+    @Autowired
+    private Services services;
 
-	@Autowired
-	protected Services services;
-	
-	@RequestMapping(value="/image", method=RequestMethod.GET)
-	public void getImage(@RequestParam("id") int id, ModelAndView model) {
-		model.addObject(services.getAuctionImage(id));
-		//model.addAttribute("image", services.getAuctionImage(id));
-		return;
-	}
+    /**
+     * Returns the byte[] that contains the requested image
+     *
+     * @param id            The identifier of the image
+     *
+     * @return              A byte[] that contains the requested image
+     */
+    @RequestMapping( value = "/image", method = RequestMethod.GET )
+    @ResponseBody
+    public byte[] getPicture(@RequestParam("id") int id)
+    {
+        return services.getAuctionImage(id);
+    }
 }

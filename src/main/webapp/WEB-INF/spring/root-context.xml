@@ -31,5 +31,36 @@
 		scope="singleton">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<!-- NOTE: it is important to specify the order property, so this adapter 
+			will be attempted before the HandlerAdapter that Spring MVC automatically 
+			configures. This is because a MappingJacksonHttpMessageConverter is registered 
+			automatically with the default adapter that will attempt to handle any Java 
+			object including BufferedImage. -->
+		<property name="order" value="1" />
+		<property name="messageConverters">
+			<list>
+				<!-- Default converters -->
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>image/jpeg</value>
+						</list>
+					</property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+
+				<!-- Converter for images -->
+				<bean
+					class="org.springframework.http.converter.BufferedImageHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
 </beans>

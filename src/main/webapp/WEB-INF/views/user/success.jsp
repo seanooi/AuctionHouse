@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="refresh" content="3;url=/AuctionHouse/login.jsp">
+<link rel="stylesheet" href="../resources/styles.css" type="text/css" />
 <title>Add User Success</title>
 </head>
 <body>
-Your new account has been created.  Please click <a href="/AuctionHouse/login.jsp">here</a> return to the login screen.
+<div id="register-success">
+
+	<div id="confirm"></div>
+
+	<div id="confirm-text">
+		<p>Your new account has been created.
+		<br />
+		You will be redirected to the login page shortly.
+		</p>
+	</div>
+</div>
 </body>
 </html>

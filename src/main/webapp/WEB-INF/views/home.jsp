@@ -20,7 +20,7 @@
 		<td>${auction.idAuction}</td>
 		<td>${auction.user.username}</td>
 		<td>${auction.category.name}</td>
-		<td>${auction.title}</td>
+		<td><a href="auction?id=${auction.idAuction}">${auction.title}</a></td>
 		<td>${auction.description}</td>
 		<td><img src="<c:url value="/image?id=${auction.idAuction}" />" /></td>
 	</tr>

@@ -1,5 +1,7 @@
 package org.cs300.auctionhouse.controllers;
 
+import java.util.List;
+
 import org.cs300.auctionhouse.domain.Auction;
 import org.cs300.auctionhouse.domain.Bid;
 import org.cs300.auctionhouse.services.Services;
@@ -33,9 +35,9 @@ public class AuctionController {
 	public String auction(@RequestParam("id") int id, Model model) {
 		logger.info("auction get request");
 		Auction auction = services.getAuctionByID(id);
-		Bid bid = new Bid();
+		Bid newbid = new Bid();
 		model.addAttribute("auction", auction);
-		model.addAttribute("bid", bid);
+		model.addAttribute("newbid", newbid);
 		return "auction/auction";
 	}
 
@@ -44,7 +46,7 @@ public class AuctionController {
 			@ModelAttribute("bid") Bid bid, Model model) {
 		logger.info("auction post request");
 		// FIXME:need to get currently logged in user and place bid if:
-		// current user is authenticated and != to auction owner
+		// current user is authenticated and != to auction owner and bid is valid
 		return "redirect:auction/bidsuccess";
 	}
 

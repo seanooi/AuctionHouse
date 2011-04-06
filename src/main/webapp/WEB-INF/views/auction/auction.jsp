@@ -27,12 +27,29 @@ ${auction.description}
 <p>
 <img src="<c:url value="/image?id=${auction.idAuction}" />" />
 </p>
-<p>
-<form:form method="post" modelAttribute="bid">
+<p>Bid History</p>
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>User</th>
+		<th>Amount</th>
+		<th>Time</th>
+	</tr>
+	<c:forEach items="${auction.bids}" var="bid">
+		<tr>
+			<td>${bid.idBid}</td>
+			<td>${bid.user.username}</td>
+			<td>${bid.amount}</td>
+			<td>${bid.time}</td>
+		</tr>
+	</c:forEach>
+</table>
+<p>Enter bid amount:
+<form:form method="post" modelAttribute="newbid">
 <form:errors path="*" cssClass="error" />
 	<form:input path="amount" />
 	<form:errors path="amount" cssClass="error" />
-	<input type="submit" />
+	<input type="submit" value="Place Bid"/>
 </form:form>
 </p>
 </body>

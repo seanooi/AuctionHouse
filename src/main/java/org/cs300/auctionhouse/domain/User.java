@@ -1,13 +1,15 @@
 package org.cs300.auctionhouse.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,11 +23,11 @@ public class User {
 	private String username;
 	private String password;
 	private boolean enabled;
-	private Set<Authority> authorities = new HashSet<Authority>(0);
-	private Set<Bid> bids = new HashSet<Bid>(0);
-	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
-	private Set<PersonalInfo> personalInfos = new HashSet<PersonalInfo>(0);
-	private Set<Auction> auctions = new HashSet<Auction>(0);
+	private List<Authority> authorities = new ArrayList<Authority>(0);
+	private List<Bid> bids = new ArrayList<Bid>(0);
+	private List<Feedback> feedbacks = new ArrayList<Feedback>(0);
+	private List<PersonalInfo> personalInfos = new ArrayList<PersonalInfo>(0);
+	private List<Auction> auctions = new ArrayList<Auction>(0);
 
 	public User() {
 	}
@@ -37,8 +39,8 @@ public class User {
 	}
 
 	public User(String username, String password, boolean enabled,
-			Set<Authority> authorities, Set<Bid> bids, Set<Feedback> feedbacks,
-			Set<PersonalInfo> personalInfos, Set<Auction> auctions) {
+			List<Authority> authorities, List<Bid> bids, List<Feedback> feedbacks,
+			List<PersonalInfo> personalInfos, List<Auction> auctions) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -88,47 +90,47 @@ public class User {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Authority> getAuthorities() {
+	public List<Authority> getAuthorities() {
 		return this.authorities;
 	}
 
-	public void setAuthorities(Set<Authority> authorities) {
+	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Bid> getBids() {
+	public List<Bid> getBids() {
 		return this.bids;
 	}
 
-	public void setBids(Set<Bid> bids) {
+	public void setBids(List<Bid> bids) {
 		this.bids = bids;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Feedback> getFeedbacks() {
+	public List<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
 
-	public void setFeedbacks(Set<Feedback> feedbacks) {
+	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<PersonalInfo> getPersonalInfos() {
+	public List<PersonalInfo> getPersonalInfos() {
 		return this.personalInfos;
 	}
 
-	public void setPersonalInfos(Set<PersonalInfo> personalInfos) {
+	public void setPersonalInfos(List<PersonalInfo> personalInfos) {
 		this.personalInfos = personalInfos;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Auction> getAuctions() {
+	public List<Auction> getAuctions() {
 		return this.auctions;
 	}
 
-	public void setAuctions(Set<Auction> auctions) {
+	public void setAuctions(List<Auction> auctions) {
 		this.auctions = auctions;
 	}
 }

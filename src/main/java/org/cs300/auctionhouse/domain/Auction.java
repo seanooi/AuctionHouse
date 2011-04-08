@@ -1,13 +1,15 @@
 package org.cs300.auctionhouse.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,8 +26,8 @@ public class Auction {
 	private String title;
 	private String description;
 	private byte[] picture;
-	private Set<Bid> bids = new HashSet<Bid>(0);
-	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
+	private List<Bid> bids = new ArrayList<Bid>(0);
+	private List<Feedback> feedbacks = new ArrayList<Feedback>(0);
 
 	public Auction() {
 	}
@@ -40,8 +42,8 @@ public class Auction {
 	}
 
 	public Auction(User user, Category category, String title,
-			String description, byte[] picture, Set<Bid> bids,
-			Set<Feedback> feedbacks) {
+			String description, byte[] picture, List<Bid> bids,
+			List<Feedback> feedbacks) {
 		this.user = user;
 		this.category = category;
 		this.title = title;
@@ -110,20 +112,20 @@ public class Auction {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auction")
-	public Set<Bid> getBids() {
+	public List<Bid> getBids() {
 		return this.bids;
 	}
 
-	public void setBids(Set<Bid> bids) {
+	public void setBids(List<Bid> bids) {
 		this.bids = bids;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auction")
-	public Set<Feedback> getFeedbacks() {
+	public List<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
 
-	public void setFeedbacks(Set<Feedback> feedbacks) {
+	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
 }

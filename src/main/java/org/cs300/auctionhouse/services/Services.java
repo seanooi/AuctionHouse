@@ -1,11 +1,15 @@
 package org.cs300.auctionhouse.services;
 
-import org.cs300.auctionhouse.domain.*;
+import java.util.List;
+
+import org.cs300.auctionhouse.domain.Auction;
+import org.cs300.auctionhouse.domain.Authority;
+import org.cs300.auctionhouse.domain.Bid;
+import org.cs300.auctionhouse.domain.PersonalInfo;
+import org.cs300.auctionhouse.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 // This class is the business services tier in the application.
 // @Transactional is needed so that a Hibernate transaction is set up,
@@ -55,5 +59,9 @@ public class Services {
 	
 	public byte[] getAuctionImage(int id) {
 		return getAuctionByID(id).getPicture();
+	}
+
+	public List<Bid> getBidsByAuctionID(int id) {
+		return getAuctionByID(id).getBids();
 	}
 }

@@ -21,7 +21,7 @@
 </p>
 <p>
 		<label id="password">Password<br />
-		<form:input path="User.password" />
+		<form:input path="User.password" type="password"/>
 		<form:errors path="User.password" cssClass="error" />
 		</label>
 </p>
@@ -91,11 +91,9 @@
 		<form:errors path="PersonalInfo.emailAddress" cssClass="error" />
 		</label>
 </p>
-
+		<div class="clear"></div>
 		<input id="submit" type="submit" name="submit" value="Register" />
 </form:form>
-<div class="clear"></div>
-<a href="/AuctionHouse/login.jsp">Log In</a>
 </div>
 </body>
 </html>

@@ -26,8 +26,11 @@ public class Auction {
 	private String title;
 	private String description;
 	private byte[] picture;
+	private boolean finished;
+	private boolean sold;
 	private List<Bid> bids = new ArrayList<Bid>(0);
 	private List<Feedback> feedbacks = new ArrayList<Feedback>(0);
+	private Bid highbid;
 
 	public Auction() {
 	}
@@ -111,6 +114,24 @@ public class Auction {
 		this.picture = picture;
 	}
 
+	@Column(name = "Finished", nullable = false)
+	public boolean getFinished() {
+		return this.finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+
+	@Column(name = "Sold", nullable = false)
+	public boolean getSold() {
+		return this.sold;
+	}
+
+	public void setSold(boolean sold) {
+		this.sold = sold;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auction")
 	public List<Bid> getBids() {
 		return this.bids;
@@ -127,5 +148,13 @@ public class Auction {
 
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
+	}
+
+	public Bid getHighBid() {
+		return bids.get(bids.size()-1);
+	}
+
+	public void setHighBid(Bid highbid) {
+		this.highbid = highbid;
 	}
 }

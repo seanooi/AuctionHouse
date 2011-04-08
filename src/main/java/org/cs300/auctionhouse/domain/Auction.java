@@ -30,7 +30,6 @@ public class Auction {
 	private boolean sold;
 	private List<Bid> bids = new ArrayList<Bid>(0);
 	private List<Feedback> feedbacks = new ArrayList<Feedback>(0);
-	private Bid highbid;
 
 	public Auction() {
 	}
@@ -148,13 +147,5 @@ public class Auction {
 
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
-	}
-
-	public Bid getHighBid() {
-		return bids.get(bids.size()-1);
-	}
-
-	public void setHighBid(Bid highbid) {
-		this.highbid = highbid;
 	}
 }

@@ -47,6 +47,18 @@ public class Services {
 	public List<Auction> getAllAuctions() {
 		return sess().createQuery("from Auction").list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Auction> getUserSales(String currentUser) {
+		return sess().createQuery("from Auction where user.username=:id").setString("id", currentUser).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Auction> getUserBids(String currentUser) {
+		return sess().createQuery("select auction from Auction auction, Bid bid where auction.user.username=:id and bid.user.username=:id").setString("id", currentUser).list();
+	}
+	
+
 
 	public Auction getAuctionByID(int id) {
 		return (Auction)

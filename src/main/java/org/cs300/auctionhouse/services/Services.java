@@ -5,6 +5,7 @@ import java.util.List;
 import org.cs300.auctionhouse.domain.Auction;
 import org.cs300.auctionhouse.domain.Authority;
 import org.cs300.auctionhouse.domain.Bid;
+import org.cs300.auctionhouse.domain.Category;
 import org.cs300.auctionhouse.domain.PersonalInfo;
 import org.cs300.auctionhouse.domain.User;
 import org.hibernate.Session;
@@ -43,6 +44,10 @@ public class Services {
 		sess().update(user);
 	}
 
+	public void saveNewAuction(Auction auction) {
+		sess().save(auction);
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Auction> getAllAuctions() {
 		return sess().createQuery("from Auction").list();
@@ -57,8 +62,6 @@ public class Services {
 	public List<Auction> getUserBids(String currentUser) {
 		return sess().createQuery("select auction from Auction auction, Bid bid where auction.user.username=:id and bid.user.username=:id").setString("id", currentUser).list();
 	}
-	
-
 
 	public Auction getAuctionByID(int id) {
 		return (Auction)
@@ -75,5 +78,14 @@ public class Services {
 
 	public List<Bid> getBidsByAuctionID(int id) {
 		return getAuctionByID(id).getBids();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Category> getAllCategories() {
+		return sess().createQuery("from Category").list();
+	}
+
+	public Category getCategoryByID(int id) {
+		return (Category)sess().createQuery("from Category where id=:id").setInteger("id", id).uniqueResult();
 	}
 }

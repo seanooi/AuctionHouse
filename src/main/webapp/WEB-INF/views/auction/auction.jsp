@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,6 +46,10 @@ ${auction.description}
 		</tr>
 	</c:forEach>
 </table>
+<sec:authorize ifNotGranted="ROLE_USER">
+<p>Please <a href="login.jsp">log in</a> to place a bid.</p>
+</sec:authorize>
+<sec:authorize ifAnyGranted="ROLE_USER">
 <p>Enter bid amount:
 <form:form method="post" modelAttribute="newbid">
 <form:errors path="*" cssClass="error" />
@@ -52,5 +58,6 @@ ${auction.description}
 	<input type="submit" value="Place Bid"/>
 </form:form>
 </p>
+</sec:authorize>
 </body>
 </html>

@@ -105,7 +105,7 @@ public class Auction {
 		this.description = description;
 	}
 
-	@Column(name = "Picture", nullable = false)
+	@Column(name = "Picture")
 	public byte[] getPicture() {
 		return this.picture;
 	}

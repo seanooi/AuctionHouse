@@ -7,13 +7,13 @@
 
 	 <http auto-config="true">
 		<intercept-url pattern="/login.jsp*" filters="none" />
-		<intercept-url pattern="/auction/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/auction/add**" access="ROLE_USER" />
 		<intercept-url pattern="/control/**" access="ROLE_USER" />
+		<intercept-url pattern="/auction/add**" access="ROLE_USER" />
+		<intercept-url pattern="/auction**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<form-login login-page="/login.jsp"
-			authentication-failure-url="/login.jsp?error=failed"
-			default-target-url="/"/>
+			authentication-failure-url="/login.jsp?error=true" />
+		<anonymous username="Guest" granted-authority="ROLE_GUEST" />
 	</http> 
 
 	<beans:bean id="userDetailsService" class="org.cs300.auctionhouse.security.UserDetailsServiceImpl" >

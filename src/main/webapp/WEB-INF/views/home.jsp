@@ -10,9 +10,9 @@
 	<p>Auctions</p>
 	<p>
 		Welcome
-		<sec:authentication property="name" />
+		<sec:authentication property="name" />.
 		<sec:authorize ifNotGranted="ROLE_USER">
-			<a href="login.jsp">Log In</a>
+			Please <a href="login.jsp">Log In</a>
 		</sec:authorize>
 	</p>
 	<table border="1">

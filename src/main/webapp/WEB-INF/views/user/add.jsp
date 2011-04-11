@@ -21,8 +21,14 @@
 </p>
 <p>
 		<label id="password">Password<br />
-		<form:input path="User.password" type="password"/>
+		<form:password path="User.password"/>
 		<form:errors path="User.password" cssClass="error" />
+		</label>
+</p>
+<p>
+		<label id="password">Confirm Password<br />
+		<form:password path="confirmPassword"/>
+		<form:errors path="confirmPassword" cssClass="error" />
 		</label>
 </p>
 <p>

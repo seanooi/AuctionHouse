@@ -7,6 +7,7 @@ public class UserPersonalInfo {
 
 	private User user;
 	private PersonalInfo pi;
+	private String confirmPassword;
 
 	public UserPersonalInfo() {
 		this.user = new User();
@@ -32,5 +33,13 @@ public class UserPersonalInfo {
 
 	public void setPersonalInfo(PersonalInfo pi) {
 		this.pi = pi;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 }

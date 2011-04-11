@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="refresh" content="3;url=/AuctionHouse/auction/${id}">
+<link rel="stylesheet" href="/AuctionHouse/resources/styles.css" type="text/css" />
+<title>Bid Success</title>
 </head>
 <body>
+<div id="register-success">
 
+	<div id="confirm"></div>
+
+	<div id="confirm-text">
+		<p>Your bid has been placed successfully.
+		<br />
+		You will be redirected back to auction page shortly.
+		</p>
+	</div>
+</div>
 </body>
 </html>

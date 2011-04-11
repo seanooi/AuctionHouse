@@ -46,18 +46,6 @@ ${auction.description}
 		</tr>
 	</c:forEach>
 </table>
-<sec:authorize ifNotGranted="ROLE_USER">
-<p>Please <a href="login.jsp">log in</a> to place a bid.</p>
-</sec:authorize>
-<sec:authorize ifAnyGranted="ROLE_USER">
-<p>Enter bid amount:
-<form:form method="post" modelAttribute="newbid">
-<form:errors path="*" cssClass="error" />
-	<form:input path="amount" />
-	<form:errors path="amount" cssClass="error" />
-	<input type="submit" value="Place Bid"/>
-</form:form>
-</p>
-</sec:authorize>
+<p><a href="${auction.idAuction}/bid">Click to place bid.</a></p>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./resources/styles.css" type="text/css" />
 </head>
 <body>
+<<<<<<< HEAD
 <div id="wrapper">
 	<div id="header">
 	<a href="/AuctionHouse"><img src="./resources/images/AuctionBanner2.png" width=783 height=222 /></a>
@@ -71,6 +72,41 @@
 		</li>
 		<li>
 			<sec:authorize ifAnyGranted="ROLE_USER">
+=======
+	<p>Auctions</p>
+	<p>
+		Welcome
+		<sec:authentication property="name" />.
+		<sec:authorize ifNotGranted="ROLE_USER">
+			Please <a href="login.jsp">Log In</a>
+		</sec:authorize>
+	</p>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>User</th>
+			<th>Category</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Image</th>
+		</tr>
+		<c:forEach items="${auctions}" var="auction">
+			<tr>
+				<td>${auction.idAuction}</td>
+				<td>${auction.user.username}</td>
+				<td>${auction.category.name}</td>
+				<td><a href="auction/${auction.idAuction}">${auction.title}</a>
+				</td>
+				<td>${auction.description}</td>
+				<td><img src="<c:url value="/image?id=${auction.idAuction}" />" />
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<p>
+		<sec:authorize ifAnyGranted="ROLE_USER">
+			<a href="control/panel">My Account</a><br/>
+>>>>>>> branch 'refs/heads/master' of ssh://git@github.com/CS300Team/AuctionHouse.git
 			<a href="j_spring_security_logout">Logout</a>
 			</sec:authorize>
 			<sec:authorize ifAnyGranted="ROLE_GUEST">

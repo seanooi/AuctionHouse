@@ -11,19 +11,30 @@
 <body>
 <div id="wrapper">
 	<div id="header">
-	<a href="/AuctionHouse"><img src="./resources/images/AuctionBanner2.png" width=783 height=222 /></a>
-	</div>
-		<!-- <p>
+		<div id="header-img">
+			<a href="/AuctionHouse"><img src="./resources/images/AuctionBanner2.png" width=300 height=85 /></a>
+		</div>
+		<div id="header-login">
 			<sec:authorize ifAnyGranted="ROLE_USER">
-			Welcome
-			<sec:authentication property="name" />
+			<p>Welcome 
+			<sec:authentication property="name" />!</p>
+			<p><a href="control/panel">My Account</a></p>
+			<p><a href="j_spring_security_logout">Logout</a></p>
 			</sec:authorize>
-		</p> -->
+			<sec:authorize ifAnyGranted="ROLE_GUEST">
+			<div id="guest">
+				<p><a href="login.jsp">Log In</a></p>
+				<p><a href="user/add">Register</a></p>
+			</div>
+			</sec:authorize>
+		</div>
+	</div>
+	<div class="clear"></div>
 		<hr />
 	<div id="nav-bar">
 		<ul id="nav">
 		<li>
-			<a href="#" title="Return home">Home</a>
+			<a href="/AuctionHouse" title="Return home">Home</a>
 		</li>
 		<li>
 			<a href="#" title="About the company">About</a>
@@ -64,19 +75,6 @@
 				<li><a href="#">Directions</a></li>
 			</ul>
 		</li>
-		<li>
-			<sec:authorize ifAnyGranted="ROLE_USER">
-			<a href="control/panel">My Account</a>
-			</sec:authorize>
-		</li>
-		<li>
-			<sec:authorize ifAnyGranted="ROLE_USER">
-			<a href="j_spring_security_logout">Logout</a>
-			</sec:authorize>
-			<sec:authorize ifAnyGranted="ROLE_GUEST">
-			<a href="login.jsp">Log In</a>
-			</sec:authorize>
-		</li>
 	</ul>
 	</div>
 	<hr />
@@ -88,7 +86,7 @@
 					</div><!-- auctionImage -->
 					
 					<div id="auctionDetails">
-					<p>Title: <label id="aTitle"><a href="auction?id=${auction.idAuction}">${auction.title}</a>
+					<p>Title: <label id="aTitle"><a href="auction/${auction.idAuction}">${auction.title}</a>
 					</label></p>
 					<p>Category: <label id="aCategory">${auction.category.name}</label></p>
 					<p>Description: <label id="aDescription">${auction.description}</label></p>

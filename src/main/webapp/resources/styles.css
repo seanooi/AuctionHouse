@@ -23,7 +23,7 @@ hr
 #wrapper
 {
 	width: 800px;
-	margin: 0 auto;
+	margin: 2em auto;
 }
 
 .clear
@@ -228,10 +228,49 @@ input#submit:active
 	margin: 0 auto;
 }
 
-#header
+#header-img
 {
-	margin: 0 auto;
-	width: 783px;
+	float: left;
+	width: 300px;
+}
+#header-login
+{
+	float: right;
+	width: 298px;
+	height: 85px;
+	text-align: right;
+}
+
+#header-login p
+{
+	margin-bottom: 1.3em;
+	font-size: 10pt;
+	font-style: italic;
+}
+
+#header-login a
+{
+	font-size: 9pt;
+	text-decoration: none;
+	border: 1px solid #000;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	background: #333;
+	color: #fff;
+	padding: 5px;
+}
+
+#header-login a:hover
+{
+	background:#6b0c36;
+	text-decoration:underline;
+	border: 1px solid #6b0c36;
+}
+
+#guest
+{
+	margin-top: 3em;
 }
 
 #nav-bar
@@ -247,9 +286,10 @@ input#submit:active
 
 #nav li{
 	float:left;
-	margin-right:10px;
+	margin-right:1em;
 	position:relative;
 	display:inline;
+	
 }
 #nav li a{
 	display:block;
@@ -257,11 +297,11 @@ input#submit:active
 	color:#fff;
 	background:#333;
 	text-decoration:none;
-	
 	text-shadow:1px 1px 1px rgba(0,0,0,0.9); /* Text shadow to lift it a little */
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
+	margin-bottom: .5em;
 }
 #nav li a:hover{
 	color:#fff;

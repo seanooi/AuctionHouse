@@ -1,9 +1,11 @@
 package org.cs300.auctionhouse.controllers;
 
 import java.beans.PropertyEditorSupport;
+import java.util.Date;
 import java.util.List;
 
 import org.cs300.auctionhouse.domain.Auction;
+import org.cs300.auctionhouse.domain.Bid;
 import org.cs300.auctionhouse.domain.Category;
 import org.cs300.auctionhouse.domain.User;
 import org.cs300.auctionhouse.services.Services;
@@ -16,11 +18,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class AuctionController {
@@ -29,8 +31,8 @@ public class AuctionController {
 	@Autowired
 	protected Services services;
 
-	@RequestMapping(value = "/auction", method = RequestMethod.GET)
-	public String auction(@RequestParam("id") int id, Model model) {
+	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET)
+	public String auction(@PathVariable("id") int id, Model model) {
 		Auction auction = services.getAuctionByID(id);
 		model.addAttribute("auction", auction);
 		return "auction/auction";
@@ -60,12 +62,35 @@ public class AuctionController {
 		User user = services.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
 		afd.getAuction().setUser(user);
 		afd.getAuction().setPicture(afd.getFile().getBytes());
-		services.saveNewAuction(afd.getAuction());
-		return "redirect:addsuccess";
+		int id = services.saveNewAuction(afd.getAuction());
+		return "redirect:addsuccess?id=" + id;
 	}
 
 	@RequestMapping(value = "auction/addsuccess", method = RequestMethod.GET)
-	public String auctionsuccess(Model model) {
+	public String auctionSuccess(@RequestParam("id") int id, Model model) {
+		model.addAttribute("id", id);
 		return "auction/addsuccess";
+	}
+
+	@RequestMapping(value = "/auction/{id}/bid", method = RequestMethod.GET)
+	public String bidForm(@PathVariable("id") int id, Model model) {
+		Bid bid = new Bid();
+		model.addAttribute("bid", bid);
+		return "auction/bid";
+	}
+
+	@RequestMapping(value = "/auction/{id}/bid", method = RequestMethod.POST)
+	public String bidSubmit(@PathVariable("id") int id, @ModelAttribute("bid") Bid bid, Model model) {
+		bid.setAuction(services.getAuctionByID(id));
+		bid.setUser(services.findByName(SecurityContextHolder.getContext().getAuthentication().getName()));
+		bid.setTime(new Date());
+		services.saveNewBid(bid);
+		return "redirect:bidsuccess";
+	}
+
+	@RequestMapping(value = "/auction/{id}/bidsuccess", method = RequestMethod.GET)
+	public String bidSuccess(@PathVariable("id") int id, Model model) {
+		model.addAttribute("id", id);
+		return "auction/bidsuccess";
 	}
 }

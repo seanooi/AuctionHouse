@@ -44,8 +44,9 @@ public class Services {
 		sess().update(user);
 	}
 
-	public void saveNewAuction(Auction auction) {
+	public int saveNewAuction(Auction auction) {
 		sess().save(auction);
+		return auction.getIdAuction();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -87,5 +88,9 @@ public class Services {
 
 	public Category getCategoryByID(int id) {
 		return (Category)sess().createQuery("from Category where id=:id").setInteger("id", id).uniqueResult();
+	}
+
+	public void saveNewBid(Bid bid) {
+		sess().save(bid);
 	}
 }

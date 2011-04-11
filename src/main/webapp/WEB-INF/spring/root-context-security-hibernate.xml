@@ -8,6 +8,7 @@
 	 <http auto-config="true">
 		<intercept-url pattern="/login.jsp*" filters="none" />
 		<intercept-url pattern="/control/**" access="ROLE_USER" />
+		<intercept-url pattern="/auction/*/bid**" access="ROLE_USER" />
 		<intercept-url pattern="/auction/add**" access="ROLE_USER" />
 		<intercept-url pattern="/auction**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />

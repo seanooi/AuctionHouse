@@ -7,7 +7,7 @@
 		<sec:authorize ifAnyGranted="ROLE_USER">
 		<p>Welcome 
 		<sec:authentication property="name" />!</p>
-			<p><a href="control/panel">My Account</a></p>
+			<p><a href="/AuctionHouse/control/panel">My Account</a></p>
 			<p><a href="j_spring_security_logout">Logout</a></p>
 		</sec:authorize>
 		<sec:authorize ifAnyGranted="ROLE_GUEST">

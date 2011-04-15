@@ -11,9 +11,11 @@
 <p>Enter Auction details.</p>
 <p>
 <form:form method="post" modelAttribute="afd" enctype="multipart/form-data">
-<form:errors path="*" cssClass="error"/>
 	<p><label id="auction.category">Category:
-		<form:select path="auction.category" items="${categories}" itemValue="idCategory" itemLabel="name" />
+		<form:select path="auction.category">
+			<form:option value="0" label="Select Category" />
+			<form:options items="${categories}" itemValue="idCategory" itemLabel="name" />
+		</form:select>
 		<form:errors path="auction.category" cssClass="error" />
 	</label></p>
 	<p><label id="title">Title:

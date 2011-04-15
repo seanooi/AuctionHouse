@@ -20,7 +20,7 @@ public class AuctionValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "auction.description", "", "Auction description is required");
 		AuctionFileData afd = (AuctionFileData)target;
 		Category category = afd.getAuction().getCategory();
-		if (category.getIdCategory() == 0) {
+		if (category == null) {
 			//must select valid category
 			errors.rejectValue("auction.category", "", "You must select a category.");
 		}

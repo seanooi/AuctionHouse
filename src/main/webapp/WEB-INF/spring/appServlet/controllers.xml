@@ -9,5 +9,6 @@
 
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<context:component-scan base-package="org.cs300.auctionhouse.controllers" />
+	<context:component-scan base-package="org.cs300.auctionhouse.validators" />
 	 
 </beans>

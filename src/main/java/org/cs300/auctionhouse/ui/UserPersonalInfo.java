@@ -6,17 +6,17 @@ import org.cs300.auctionhouse.domain.PersonalInfo;
 public class UserPersonalInfo {
 
 	private User user;
-	private PersonalInfo pi;
+	private PersonalInfo personalInfo;
 	private String confirmPassword;
 
 	public UserPersonalInfo() {
 		this.user = new User();
-		this.pi = new PersonalInfo();
+		this.personalInfo = new PersonalInfo();
 	}
 
 	public UserPersonalInfo(User user, PersonalInfo pi) {
 		this.user = user;
-		this.pi = pi;
+		this.personalInfo = pi;
 	}
 
 	public User getUser() {
@@ -28,11 +28,11 @@ public class UserPersonalInfo {
 	}
 
 	public PersonalInfo getPersonalInfo() {
-		return pi;
+		return personalInfo;
 	}
 
-	public void setPersonalInfo(PersonalInfo pi) {
-		this.pi = pi;
+	public void setPersonalInfo(PersonalInfo personalInfo) {
+		this.personalInfo = personalInfo;
 	}
 
 	public String getConfirmPassword() {

@@ -1,7 +1,8 @@
 package org.cs300.auctionhouse.controllers;
 
-import org.cs300.auctionhouse.ui.UserPersonalInfo;
 import org.cs300.auctionhouse.services.Services;
+import org.cs300.auctionhouse.ui.UserPersonalInfo;
+import org.cs300.auctionhouse.validators.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class UserController {
 
 	@Autowired
 	protected Services services;
+	@Autowired
+	private UserValidator userValidator;
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET)
 	public String addUserForm(Model model) {
@@ -32,8 +35,13 @@ public class UserController {
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public String addUserSubmit(@ModelAttribute("upi") UserPersonalInfo upi,
 			BindingResult result, SessionStatus status) {
-		services.createUser(upi.getUser(), upi.getPersonalInfo());
-		return "redirect:success";
+		userValidator.validate(upi, result);
+		if (result.hasErrors()) {
+			return "user/add";
+		} else {
+			services.createUser(upi.getUser(), upi.getPersonalInfo());
+			return "redirect:success";
+		}
 	}
 
 	@RequestMapping(value="/user/update", method=RequestMethod.GET)

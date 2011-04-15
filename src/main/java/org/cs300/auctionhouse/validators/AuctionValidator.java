@@ -26,7 +26,7 @@ public class AuctionValidator implements Validator {
 		}
 		CommonsMultipartFile file = afd.getFile();
 		String fileName = file.getOriginalFilename().toLowerCase();
-		if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png") || fileName.endsWith(".gif")) {
+		if (!(fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png") || fileName.endsWith(".gif"))) {
 			//incorrect file type
 			errors.rejectValue("file", "", "The file you selected is not supported.\nPNG, JPG, and GIF formats only.");
 		}

@@ -327,7 +327,6 @@ input#submit:active
 	float:left;
 	margin-right:1em;
 	position:relative;
-	display:inline;
 	
 }
 
@@ -339,10 +338,6 @@ input#submit:active
 	background:#333;
 	text-decoration:none;
 	text-shadow:1px 1px 1px rgba(0,0,0,0.9); /* Text shadow to lift it a little */
-	/*-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	margin-bottom: .5em;*/
 }
 
 #nav li a:hover

@@ -61,7 +61,7 @@ public class Services {
 	
 	@SuppressWarnings("unchecked")
 	public List<Auction> getUserBids(String currentUser) {
-		return sess().createQuery("select auction from Auction auction, Bid bid where auction.user.username=:id and bid.user.username=:id").setString("id", currentUser).list();
+		return sess().createQuery("select distinct auction from Auction auction, Bid bid where auction.user.username=:id and bid.user.username=:id").setString("id", currentUser).list();
 	}
 
 	public Auction getAuctionByID(int id) {

@@ -11,9 +11,9 @@
 			<p><a href="/AuctionHouse/j_spring_security_logout">Logout</a></p>
 		</sec:authorize>
 		<sec:authorize ifAnyGranted="ROLE_GUEST">
-		<p>Welcome!</p>
-			<p><a href="login.jsp">Log In</a></p>
-			<p><a href="user/add">Register</a></p>
+		<p>Welcome Guest!</p>
+			<p><a href="/AuctionHouse/login.jsp">Log In</a></p>
+			<p><a href="/AuctionHouse/user/add">Register</a></p>
 		</sec:authorize>
 	</div>
 </div>

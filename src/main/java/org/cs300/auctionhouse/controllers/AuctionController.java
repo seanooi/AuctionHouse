@@ -37,7 +37,18 @@ public class AuctionController {
 	public String auction(@PathVariable("id") int id, Model model) {
 		Auction auction = services.getAuctionByID(id);
 		model.addAttribute("auction", auction);
+		Bid bid = new Bid();
+		model.addAttribute("bid", bid);
 		return "auction/auction";
+	}
+	
+	@RequestMapping(value = "/auction/{id}", method = RequestMethod.POST)
+	public String auctionSubmit(@PathVariable("id") int id, @ModelAttribute("bid") Bid bid, Model model) {
+		bid.setAuction(services.getAuctionByID(id));
+		bid.setUser(services.findByName(SecurityContextHolder.getContext().getAuthentication().getName()));
+		bid.setTime(new Date());
+		services.saveNewBid(bid);
+		return "redirect:" + id + "/bidsuccess";
 	}
 
 	@InitBinder

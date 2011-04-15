@@ -15,10 +15,8 @@
 <%@ include file="../header.jsp" %>
 <div id="mainPage-auctions">
 <div id="auctionImage">
-	<p>
-	<img src="<c:url value="/image?id=${auction.idAuction}" />" />
-	</p>
-</div>
+	<p><label id="aImage"><img src="<c:url value="/image?id=${auction.idAuction}" />" /></label></p>
+</div><!-- auctionImage -->
 
 <div id="auctionDetails">
 <p>Title: <label id="aTitle">${auction.title}</label></p>
@@ -26,6 +24,21 @@
 		<p>Description: <label id="aDescription">${auction.description}</label></p>
 		<p>User: <label id="aUsername">${auction.user.username}</label></p>
 		<p>Bid: <label id="aBid">${auction.bids[0].amount}</label></p>
+		<sec:authorize ifNotGranted="ROLE_USER">
+		<p id="login-msg">Please login to place a new bid</p>
+		</sec:authorize>
+		<sec:authorize ifAnyGranted="ROLE_USER">
+		<p>
+			<form:form method="post" modelAttribute="bid">
+			<form:errors path="*" cssClass="error"/>
+				<p><label id="amount">Amount:
+			<form:input path="amount" />
+			<form:errors path = "amount" cssClass="error"/>
+				</label></p>
+				<p><input id="submit" type="submit" name="submit" value="Place Bid" /></p>
+			</form:form>
+		</p>
+		</sec:authorize>
 <p>Bid History</p>
 <table border="1">
 	<tr>
@@ -43,7 +56,6 @@
 		</tr>
 	</c:forEach>
 </table>
-<p><a href="${auction.idAuction}/bid">Click to place bid.</a></p>
 </div><!-- auctionDetails -->
 </div><!--  mainPage=auctions -->
 <%@ include file="../footer.jsp" %>

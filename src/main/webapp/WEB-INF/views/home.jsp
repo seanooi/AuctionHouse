@@ -13,7 +13,7 @@
 		<div id="mainPage-auctions">
 			<c:forEach items="${auctions}" var="auction">
 					<div id="auctionImage">
-					<p><label id="aImage"><img src="<c:url value="/image?id=${auction.idAuction}" />" /></label></p>
+					<p><label id="aImage"><a href="auction/${auction.idAuction}"><img src="<c:url value="/image?id=${auction.idAuction}" />" /></a></label></p>
 					</div><!-- auctionImage -->
 					
 					<div id="auctionDetails">

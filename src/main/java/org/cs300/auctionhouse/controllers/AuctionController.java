@@ -10,6 +10,7 @@ import org.cs300.auctionhouse.domain.Category;
 import org.cs300.auctionhouse.domain.User;
 import org.cs300.auctionhouse.services.Services;
 import org.cs300.auctionhouse.ui.AuctionFileData;
+import org.cs300.auctionhouse.validators.AuctionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,9 +28,10 @@ import org.springframework.web.bind.support.SessionStatus;
 @Controller
 public class AuctionController {
 
-	// Spring will inject the services here we hope
 	@Autowired
 	protected Services services;
+	@Autowired
+	private AuctionValidator auctionValidator;
 
 	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET)
 	public String auction(@PathVariable("id") int id, Model model) {
@@ -59,11 +61,16 @@ public class AuctionController {
 
 	@RequestMapping(value = "/auction/add", method = RequestMethod.POST)
 	public String addAuctionSubmit(@ModelAttribute("afd") AuctionFileData afd, BindingResult result, SessionStatus status) {
-		User user = services.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
-		afd.getAuction().setUser(user);
-		afd.getAuction().setPicture(afd.getFile().getBytes());
-		int id = services.saveNewAuction(afd.getAuction());
-		return "redirect:addsuccess?id=" + id;
+		auctionValidator.validate(afd, result);
+		if (result.hasErrors()) {
+			return "auction/add";
+		} else {
+			User user = services.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+			afd.getAuction().setUser(user);
+			afd.getAuction().setPicture(afd.getFile().getBytes());
+			int id = services.saveNewAuction(afd.getAuction());
+			return "redirect:addsuccess?id=" + id;
+		}
 	}
 
 	@RequestMapping(value = "auction/addsuccess", method = RequestMethod.GET)
@@ -92,5 +99,29 @@ public class AuctionController {
 	public String bidSuccess(@PathVariable("id") int id, Model model) {
 		model.addAttribute("id", id);
 		return "auction/bidsuccess";
+	}
+
+	@RequestMapping(value = "/auction/{id}/feedback", method = RequestMethod.GET)
+	public String feedback(@PathVariable("id") int id, Model model) {
+		//FIXME: view feedback
+		return "auction/feedback";
+	}
+
+	@RequestMapping(value = "/auction/{id}/feedback/add", method = RequestMethod.GET)
+	public String feedbackForm(@PathVariable("id") int id, Model model) {
+		//FIXME: display feedback form
+		return "auction/feedbackadd";
+	}
+
+	@RequestMapping(value = "/auction/{id}/feedback/add", method = RequestMethod.POST)
+	public String feedbackSubmit(@PathVariable("id") int id, @ModelAttribute("bid") Bid bid, Model model) {
+		//FIXME: submit new feedback
+		return "redirect:feedbacksuccess";
+	}
+
+	@RequestMapping(value = "/auction/{id}/feedback/success", method = RequestMethod.GET)
+	public String feedbackSuccess(@PathVariable("id") int id, Model model) {
+		model.addAttribute("id", id);
+		return "auction/feedbacksuccess";
 	}
 }

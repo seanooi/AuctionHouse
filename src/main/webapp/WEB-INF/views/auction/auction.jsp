@@ -25,7 +25,7 @@
 		<p>User: <label id="aUsername">${auction.user.username}</label></p>
 		<p>Bid: <label id="aBid">${auction.bids[0].amount}</label></p>
 		<sec:authorize ifNotGranted="ROLE_USER">
-		<p id="login-msg">Please login to place a new bid</p>
+		<p id="login-msg">Please <a href="/AuctionHouse/login.jsp">login</a> to place a new bid</p>
 		</sec:authorize>
 		<sec:authorize ifAnyGranted="ROLE_USER">
 		<p>
@@ -39,23 +39,25 @@
 			</form:form>
 		</p>
 		</sec:authorize>
+		<div class="clear"></div>
+		<hr />
+<div id="bid-history">
 <p>Bid History</p>
 <table border="1">
 	<tr>
-		<th>ID</th>
 		<th>User</th>
 		<th>Amount</th>
 		<th>Time</th>
 	</tr>
 	<c:forEach items="${auction.bids}" var="bid">
 		<tr>
-			<td>${bid.idBid}</td>
 			<td>${bid.user.username}</td>
 			<td>${bid.amount}</td>
 			<td>${bid.time}</td>
 		</tr>
 	</c:forEach>
 </table>
+</div>
 </div><!-- auctionDetails -->
 </div><!--  mainPage=auctions -->
 <%@ include file="../footer.jsp" %>

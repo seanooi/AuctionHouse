@@ -110,7 +110,18 @@ label#username, label#password, label#firstName, label#middleName, label#lastNam
 	-khtml-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
-	
+	text-align: center;
+	margin: 1em 0;
+}
+
+#login-msg a
+{
+	color: blue;
+}
+
+#login-msg a:hover
+{
+	color: red;
 }
 
 #login-form input, #upi input
@@ -203,6 +214,7 @@ input#submit:active
 	border: 1px solid #000;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
+	-khtml-border-radius:10px;
 	border-radius: 10px;
 	padding: 5px;
 	width: 105px;
@@ -227,6 +239,19 @@ input#submit:active
 	line-height: 1.5em;
 	font-weight: 800;
 	font-size: 10pt;
+}
+
+#aTitle a
+{
+	color: blue;
+	text-decoration: none;
+}
+
+#aTitle a:hover
+{
+	color: #000;
+	text-decoration: underline;
+	background:#f1cc91;
 }
 
 #auctionDetails label
@@ -286,19 +311,23 @@ input#submit:active
 	display: table;
 }
 
-#nav{
+#nav
+{
 	float:left;
 	font-weight:bold;
 }
 
-#nav li{
+#nav li
+{
 	float:left;
 	margin-right:1em;
 	position:relative;
 	display:inline;
 	
 }
-#nav li a{
+
+#nav li a
+{
 	display:block;
 	padding:5px;
 	color:#fff;
@@ -310,7 +339,9 @@ input#submit:active
 	border-radius:2px;
 	margin-bottom: .5em;*/
 }
-#nav li a:hover{
+
+#nav li a:hover
+{
 	color:#fff;
 	background:#6b0c36;
 	background:rgba(107,12,54,0.9); /* It'll look nice semi-transparent */
@@ -318,38 +349,81 @@ input#submit:active
 }
 
 /*--- DROPDOWN ---*/
-#nav ul{
+#nav ul
+{
 	list-style:none;
 	position:absolute;
 	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
 	opacity:0; /* Set initial state to transparent */
 	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
 }
-#nav ul li{
+
+#nav ul li
+{
 	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
 	float:none;
 }
-#nav ul a{
+
+#nav ul a
+{
 	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
 	display:block;
 }
-#nav li:hover ul{ /* Display the dropdown on hover */
+
+#nav li:hover ul
+{ /* Display the dropdown on hover */
 	left:0; /* Bring back on-screen when needed */
 	opacity:1; /* Fade to opaque */
 }
-#nav li:hover a{ /* Set styles for top level when dropdown is hovered */
+
+#nav li:hover a
+{ /* Set styles for top level when dropdown is hovered */
 	background:#6b0c36;
 	background:rgba(107,12,54,0.9); /* It'll look nice semi-transparent */
 	text-decoration:underline;
 }
-#nav li:hover ul a{ /* Override some top level styles when dropdown is hovered */
+
+#nav li:hover ul a
+{ /* Override some top level styles when dropdown is hovered */
 	text-decoration:none;
 	-webkit-transition:-webkit-transform 0.075s linear;
 }
-#nav li:hover ul li a:hover{ /* Set styles for dropdown when items are hovered */
+
+#nav li:hover ul li a:hover
+{ /* Set styles for dropdown when items are hovered */
 	background:#333;
 	background:rgba(51,51,51,0.9); /* It'll look nice semi-transparent */
 	text-decoration:underline;
 	-moz-transform:scale(1.05);
 	-webkit-transform:scale(1.05);
+}
+
+label#amount
+{
+	width: 250px;
+	float: left;
+	font-weight: 800 !important;
+}
+
+#bid-history th
+{
+	font-size: 10pt;
+	text-align: center;
+	padding: 3px 5px;
+}
+
+#bid-history td
+{
+	padding: 5px;
+}
+
+#bid-history tr:nth-child(2n+1)
+{
+	background: #d0dafd;
+}
+
+#bid-history table
+{
+	border: 1px solid #f9f9f9;
+	border-collapse: collapse;
 }

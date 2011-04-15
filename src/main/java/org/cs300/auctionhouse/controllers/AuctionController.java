@@ -33,6 +33,21 @@ public class AuctionController {
 	@Autowired
 	private AuctionValidator auctionValidator;
 
+    @ModelAttribute("categories")
+    public List<Category> populateCategories() {
+        return services.getAllCategories();
+    }
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Category.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) {
+				setValue(services.getCategoryByID(Integer.valueOf(text)));
+			}
+		});
+	}
+
 	@RequestMapping(value = "/auction/{id}", method = RequestMethod.GET)
 	public String auction(@PathVariable("id") int id, Model model) {
 		Auction auction = services.getAuctionByID(id);
@@ -51,22 +66,18 @@ public class AuctionController {
 		return "redirect:" + id + "/bidsuccess";
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Category.class, new PropertyEditorSupport() {
-			@Override
-			public void setAsText(String text) {
-				setValue(services.getCategoryByID(Integer.valueOf(text)));
-			}
-		});
+	@RequestMapping(value = "/auction/{id}/bidsuccess", method = RequestMethod.GET)
+	public String bidSuccess(@PathVariable("id") int id, Model model) {
+		model.addAttribute("id", id);
+		return "auction/bidsuccess";
 	}
 
 	@RequestMapping(value = "/auction/add", method = RequestMethod.GET)
 	public String addAuctionForm(Model model) {
 		AuctionFileData afd = new AuctionFileData();
-		List<Category> categories = services.getAllCategories();
+		//List<Category> categories = services.getAllCategories();
 		model.addAttribute("afd", afd);
-		model.addAttribute("categories", categories);
+		//model.addAttribute("categories", categories);
 		return "auction/add";
 	}
 
@@ -88,28 +99,6 @@ public class AuctionController {
 	public String auctionSuccess(@RequestParam("id") int id, Model model) {
 		model.addAttribute("id", id);
 		return "auction/addsuccess";
-	}
-
-	@RequestMapping(value = "/auction/{id}/bid", method = RequestMethod.GET)
-	public String bidForm(@PathVariable("id") int id, Model model) {
-		Bid bid = new Bid();
-		model.addAttribute("bid", bid);
-		return "auction/bid";
-	}
-
-	@RequestMapping(value = "/auction/{id}/bid", method = RequestMethod.POST)
-	public String bidSubmit(@PathVariable("id") int id, @ModelAttribute("bid") Bid bid, Model model) {
-		bid.setAuction(services.getAuctionByID(id));
-		bid.setUser(services.findByName(SecurityContextHolder.getContext().getAuthentication().getName()));
-		bid.setTime(new Date());
-		services.saveNewBid(bid);
-		return "redirect:bidsuccess";
-	}
-
-	@RequestMapping(value = "/auction/{id}/bidsuccess", method = RequestMethod.GET)
-	public String bidSuccess(@PathVariable("id") int id, Model model) {
-		model.addAttribute("id", id);
-		return "auction/bidsuccess";
 	}
 
 	@RequestMapping(value = "/auction/{id}/feedback", method = RequestMethod.GET)
